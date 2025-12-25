@@ -13,6 +13,46 @@
 */
 
 // Start coding here
+// const updateStudentScore = (studentsInfo, targetStudent, addScore) => {
+//   let left = 0;
+//   let right = studentsInfo.length - 1;
+//   let studentName = "";
+//   let newScore = 0;
+//   while (left <= right) {
+//     let mid = Math.floor((left + right) / 2);
+//     if (studentsInfo[mid].name === targetStudent) {
+//       studentName = studentsInfo[mid].name;
+//       newScore = studentsInfo[mid].score + addScore;
+//       break;
+//     } else if (studentsInfo[mid].name > targetStudent) {
+//       right = mid - 1;
+//     } else {
+//       left = mid + 1;
+//     }
+//   }
+//   return studentName
+//     ? `${studentName} score is now ${newScore}`
+//     : `Not found ${targetStudent} on the list`;
+// };
+
+//Refactor
+const updateStudentScore = (studentsInfo, targetStudent, addScore) => {
+  let left = 0;
+  let right = studentsInfo.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    const currentStudent = studentsInfo[mid];
+    if (currentStudent.name === targetStudent) {
+      currentStudent.score += addScore;
+      return `${targetStudent} score is now ${currentStudent.score}`;
+    } else if (currentStudent.name > targetStudent) {
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
+  return `Not found ${targetStudent} on the list`;
+};
 
 const studentsInfo = [
   { name: "Alice", age: 14, classNumber: 8, score: 70 },
